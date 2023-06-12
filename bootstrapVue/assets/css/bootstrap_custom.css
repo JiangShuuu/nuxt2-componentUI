@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/*Popover*/
+.popover {
+    max-width: none;
+    &.b-popover {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+    }
+    &-body {
+        padding: 24px;
+    }
+}
+
+/* modal */
+.modal {
+    &-body {
+        padding: 0;
+    }
+    &-dialog {
+        min-width: 1200px;
+    }
+}
+
+/* tooltip */
+.custom-tooltip > .tooltip-inner {
+    max-width: 370px;
+    padding: 8px 12px;
+    text-align: justify;
+}
+
+/* b-toast */
+.custom-toaster {
+    @apply bg-black;
+    color: white;
+    font-size: 16px;
+    padding: 32px 61px;
+    border-radius: 4px;
+}
+.b-toaster {
+    &.b-toaster-center {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+    }
+}

@@ -1,5 +1,6 @@
 module.exports = {
   important: true,
+  // prefix: 'tw-',
   content: [
     './components/**/*.{js,vue,ts}',
     './layouts/**/*.vue',
@@ -7,76 +8,62 @@ module.exports = {
     './plugins/**/*.{js,ts}',
     './nuxt.config.{js,ts}',
   ],
+  fontFamily: {
+    sans: ['Arial', '微軟正黑體', 'Helvetica', 'sans-serif'],
+  },
+  screens: {
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px',
+  },
   theme: {
     extend: {
       colors: {
         primary: {
-          light: '#ffd943',
-          DEFAULT: '#ffb01c',
-          dark: '#e2931c',
-        },
-        secondary: {
-          light: '#ffe3d7',
-          DEFAULT: '#ff6d2d',
-          dark: '#CC3D00',
+          extralight: '#E6F9FA',
+          light: '#39C8D0',
+          DEFAULT: '#00AFB8',
+          deep: '#028B95',
         },
         black: {
-          DEFAULT: '#1e1e1e',
-          700: '#3C3C3C',
+          DEFAULT: '#292929',
         },
         gray: {
-          100: '#faf9f5',
-          200: '#f0f0f0',
-          300: '#ebebeb',
-          400: '#dcdcdc',
-          500: '#b4b4b4',
-          600: '#969696',
-          700: '#615a50',
-          800: '#424242',
-          900: '#212121',
+          DEFAULT: '#7E7E7E',
+          600: '#A9A9A9',
+          500: '#DDDDDD',
+          400: '#D9D9D9',
+          300: '#DFE2E6',
+          200: '#EEEEEE',
+          100: '#F3F3F3',
         },
-        blue: {
-          DEFAULT: '#0882ec',
-          dark: '#36568d',
-          light: '#798fa7',
-          100: '#ebf8ff',
-          200: '#bee3f8',
-          300: '#90cdf4',
-          400: '#63b3ed',
-          500: '#0882ec',
-          600: '#3182ce',
-          700: '#2b6cb0',
-          800: '#2c5282',
-          900: '#2a4365',
-        },
-        pink: {
-          DEFAULT: '#eaac9d',
-          light: '#fef0f0',
-        },
-        yellow: {
-          light: '#fdf6e9',
-          DEFAULT: '#b49d73',
-          dark: '#776e60',
-          darker: '#97614f',
-        },
-        teal: '#107893',
         red: {
-          DEFAULT: '#ff0000',
-          light: '#e70404',
+          DEFAULT: '#EA475B',
         },
         orange: {
-          extralight: '#FFF9F3',
-          light: '#FFF9ED',
-          DEFAULT: '#FFF3E5',
-          depper: '#FFB066',
-          dark: '#FF6D2D',
+          DEFAULT: '#FFAB31',
+          deep: '#FF843F',
         },
-        cyan: '#4DC4A4',
+        green: {
+          DEFAULT: '#70BE20',
+        },
+        pink: {
+          DEFAULT: '#FFE9EC',
+        },
+        yellow: {
+          DEFAULT: '#FCFCFA',
+        },
+        blue: {
+          light: '#4E91FF',
+          DEFAULT: '#1654B9',
+        },
+        purple: {
+          light: '#A386D5',
+          DEFAULT: '#78269F',
+        },
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 }

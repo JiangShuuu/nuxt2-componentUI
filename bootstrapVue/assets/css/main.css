@@ -11,3 +11,28 @@
   }
 }
 
+
+/* btn */
+.btn {
+    /* all: unset; */
+    @apply py-3 w-full flex items-center justify-center cursor-pointer rounded max-h-9;
+    transition: 0.2s;
+    &_primary {
+        @apply bg-primary text-white;
+        border: 1px solid transparent;
+        &:hover {
+            @apply bg-primary-light text-white;
+        }
+    }
+    &_secondary {
+        @apply border border-primary text-primary bg-white;
+        &:hover {
+            @apply text-primary;
+            box-shadow: 0 0 4px 0 rgba(57, 200, 208, 0.5);
+        }
+    }
+    &:disabled {
+        @apply bg-gray-600;
+        cursor: not-allowed;
+    }
+}
