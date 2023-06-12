@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center w-full h-screen">
-    <NuxtLink to="/popover" class="text-primary">PopoverPage</NuxtLink>
+    <NuxtLink to="/ui" class="text-primary">ComponentUI</NuxtLink>
   </div>
 </template>
 
