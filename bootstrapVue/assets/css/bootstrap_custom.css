@@ -46,3 +46,35 @@
         z-index: 9999;
     }
 }
+
+
+/* table */
+.table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* table Header */
+.table thead th {
+    border: none;
+    padding: 24px 16px;
+    vertical-align: middle;
+}
+
+/* table Body Item */
+.table tbody tr td {
+    @apply border-b border-b-gray-200;
+    padding: 24px 16px;
+    border-top: none;
+}
+
+.table tbody tr:hover {
+    @apply bg-primary-extralight;
+}
+
+/* Hide default icon */
+.table.b-table > thead > tr > th,
+.table.b-table > tfoot > tr > td {
+    background-image: none !important;
+}
+
