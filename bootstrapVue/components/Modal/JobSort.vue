@@ -6,38 +6,38 @@
     class="modal-dialog"
     :hide-footer="true"
   >
-    <div class="jobsort">
+    <div class="m-6 ml-12">
       <div class="flex justify-end">
         <div class="text-2xl cursor-pointer text-gray" @click="onModalClose">X</div>
       </div>
 
-      <p class="title">公司職缺篩選</p>
+      <p class="text-2xl font-bold">公司職缺篩選</p>
 
-      <div class="header">
-        <div class="header_content">
-          <div class="lists">
-            <p>統編</p>
+      <div class="flex items-center justify-between p-6 mt-4 border-t border-b border-gray-200 bg-yellow">
+        <div class="flex-1 header_content">
+          <div class="flex mb-4 font-bold">
+            <p class="w-1/6">統編</p>
             <span>88569854</span>
           </div>
-          <div class="lists">
-            <p>公司名稱</p>
+          <div class="flex mb-4 font-bold">
+            <p class="w-1/6">公司名稱</p>
             <span>大魯閣湳雅廣場</span>
           </div>
-          <div class="lists">
-            <p>職缺總數</p>
+          <div class="flex mb-4 font-bold">
+            <p class="w-1/6">職缺總數</p>
             <span>23</span>
           </div>
         </div>
-        <button class="btn btn_primary" @click="onModalClose">儲存</button>
+        <button class="w-[154px] btn btn_primary" @click="onModalClose">儲存</button>
       </div>
 
-      <div class="sub_title_box">
-        <p class="sub_title">參與活動職缺</p>
-        <p class="text">共 <span class="text-num">5600</span> 家公司</p>
+      <div class="flex items-center mt-9">
+        <p class="mr-4 text-2xl font-bold">參與活動職缺</p>
+        <p class="text-gray">共 <span class="text-primary">5600</span> 家公司</p>
       </div>
 
       <!-- table -->
-      <div class="sort_table">
+      <div class="mt-[30px] mb-[60px]">
         <b-table class="table" hover :items="lists" :fields="fields" responsive>
           <template #head(action)="row">
             <label class="common-checkbox"
@@ -152,60 +152,4 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
-.jobsort {
-  margin: 24px 24px 24px 48px;
-  .header {
-    @apply border-gray-200 border-t border-b bg-yellow;
-    margin-top: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px;
-    .header_content {
-      .lists {
-        display: flex;
-        margin-bottom: 16px;
-        font-weight: 700;
-        p {
-          width: 15%;
-        }
-        span {
-          flex: 1;
-        }
-        &:last-child {
-          margin-bottom: 0;
-        }
-      }
-      flex: 1;
-    }
-    button {
-      width: 154px;
-      margin: 0 24px;
-    }
-  }
-  .title {
-    font-size: 24px;
-    font-weight: 700;
-  }
-  .sub_title_box {
-    margin-top: 36px;
-    display: flex;
-    align-items: center;
-    .sub_title {
-      font-size: 24px;
-      font-weight: 700;
-      margin-right: 16px;
-    }
-    .text {
-      @apply text-gray;
-    }
-    .text-num {
-      @apply text-primary;
-    }
-  }
-  .sort_table {
-    margin: 30px 0 60px 0;
-  }
-}
-</style>
+<style lang="postcss" scoped></style>
