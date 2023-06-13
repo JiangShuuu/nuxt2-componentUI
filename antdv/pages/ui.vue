@@ -4,7 +4,12 @@
       <button class="w-20 btn btn_primary">Popover</button>
       <button class="w-20 btn btn_primary" @click="open">Modal</button>
       <button class="w-20 btn btn_primary">Toast</button>
-      <button class="w-20 btn btn_primary">Tooltip</button>
+      <a-tooltip placement="top">
+        <template slot="title">
+          <span>prompt text</span>
+        </template>
+        <button class="w-20 btn btn_primary">Tooltip</button>
+      </a-tooltip>
     </div>
     <ModalJobSort ref="modal" />
   </div>
