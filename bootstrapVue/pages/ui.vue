@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'PopoverPage',
+  name: 'ComponentUI',
   methods: {
     showToast() {
       this.$root.$bvToast.toast('BootstrapToast!!', {
