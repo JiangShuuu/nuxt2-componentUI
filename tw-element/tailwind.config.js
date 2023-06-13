@@ -7,6 +7,8 @@ module.exports = {
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
     './nuxt.config.{js,ts}',
+    './src/**/*.{html,js}',
+    './node_modules/tw-elements/dist/js/**/*.js',
   ],
   fontFamily: {
     sans: ['Arial', '微軟正黑體', 'Helvetica', 'sans-serif'],
@@ -65,5 +67,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('tw-elements/dist/plugin.cjs')],
 }
