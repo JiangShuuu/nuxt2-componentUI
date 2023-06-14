@@ -19,7 +19,7 @@ const settings = {
     props: {
       fixedClasses: {
         overlay:
-          'p-2 z-100 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed bg-opacity-50 bg-black',
+          'p-2 z-100 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed bg-opacity-60 bg-black',
         wrapper: 'z-50 relative mx-auto',
         modal: '',
         body: '',
