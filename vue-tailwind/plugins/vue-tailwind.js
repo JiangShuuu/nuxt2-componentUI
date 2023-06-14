@@ -5,7 +5,8 @@ import TDropdown from 'vue-tailwind/dist/t-dropdown'
 import TModal from 'vue-tailwind/dist/t-modal'
 import TPagination from 'vue-tailwind/dist/t-pagination'
 import TInput from 'vue-tailwind/dist/t-input'
-// import TCheckbox from 'vue-tailwind/dist/t-checkbox'
+import TTable from 'vue-tailwind/dist/t-table'
+import TCheckbox from 'vue-tailwind/dist/t-checkbox'
 // import TRadio from 'vue-tailwind/dist/t-radio'
 // import TDatepicker from 'vue-tailwind/dist/t-datepicker'
 import TSelect from 'vue-tailwind/dist/t-select'
@@ -40,6 +41,23 @@ const settings = {
         closeIcon: '',
       },
       escToClose: false,
+    },
+  },
+  TTable: {
+    component: TTable,
+    props: {
+      classes: {
+        table: 'min-w-full shadow-sm',
+        thead: '',
+        theadTr: '',
+        theadTh: 'px-4 py-6 font-semibold text-left',
+        tbody: '',
+        tr: '',
+        td: 'px-4 py-6 border',
+        tfoot: '',
+        tfootTr: '',
+        tfootTd: '',
+      },
     },
   },
   TSelect: {
@@ -151,6 +169,9 @@ const settings = {
           'text-green-600 bg-green-100 focus:outline-none focus:shadow-outline border border-green-300 rounded py-2 px-4 block w-full leading-normal placeholder-green-300',
       },
     },
+  },
+  TCheckbox: {
+    component: TCheckbox,
   },
 }
 
