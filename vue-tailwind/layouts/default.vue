@@ -5,7 +5,7 @@
     <client-only>
       <ModalT />
     </client-only>
-    <PortalTarget name="modal" multiple />
+    <!-- <PortalTarget name="modal" multiple /> -->
   </div>
 </template>
 
