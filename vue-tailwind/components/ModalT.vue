@@ -33,6 +33,7 @@
 
         <!-- table -->
         <t-table class="mt-[30px] mb-[60px]" :headers="fields" :data="lists">
+          <!-- Custom Header -->
           <template slot="thead" slot-scope="props">
             <thead>
               <tr>
@@ -65,6 +66,7 @@
               </tr>
             </thead>
           </template>
+          <!-- Custom Item -->
           <template slot="row" slot-scope="props">
             <tr class="hover:bg-primary-extralight">
               <td class="px-4 py-6">
