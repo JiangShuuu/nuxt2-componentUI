@@ -4,9 +4,9 @@ import VueTailwind from 'vue-tailwind'
 import TDropdown from 'vue-tailwind/dist/t-dropdown'
 import TModal from 'vue-tailwind/dist/t-modal'
 import TPagination from 'vue-tailwind/dist/t-pagination'
-import TInput from 'vue-tailwind/dist/t-input'
+// import TInput from 'vue-tailwind/dist/t-input'
 import TTable from 'vue-tailwind/dist/t-table'
-import TCheckbox from 'vue-tailwind/dist/t-checkbox'
+// import TCheckbox from 'vue-tailwind/dist/t-checkbox'
 // import TRadio from 'vue-tailwind/dist/t-radio'
 // import TDatepicker from 'vue-tailwind/dist/t-datepicker'
 import TSelect from 'vue-tailwind/dist/t-select'
@@ -157,22 +157,19 @@ const settings = {
       },
     },
   },
-  TInput: {
-    component: TInput,
-    props: {
-      classes:
-        'bg-white focus:outline-none focus:border-black border border-gray-400 rounded py-2 px-2 block leading-normal lg:text-base text-xs',
-      variants: {
-        error:
-          'text-red bg-red-light focus:outline-none focus:shadow-outline border border-secondary rounded py-2 px-4 block w-full leading-normal placeholder-secondary',
-        success:
-          'text-green-600 bg-green-100 focus:outline-none focus:shadow-outline border border-green-300 rounded py-2 px-4 block w-full leading-normal placeholder-green-300',
-      },
-    },
-  },
-  TCheckbox: {
-    component: TCheckbox,
-  },
+  // TInput: {
+  //   component: TInput,
+  //   props: {
+  //     classes:
+  //       'bg-white focus:outline-none focus:border-black border border-gray-400 rounded py-2 px-2 block leading-normal lg:text-base text-xs',
+  //     variants: {
+  //       error:
+  //         'text-red bg-red-light focus:outline-none focus:shadow-outline border border-secondary rounded py-2 px-4 block w-full leading-normal placeholder-secondary',
+  //       success:
+  //         'text-green-600 bg-green-100 focus:outline-none focus:shadow-outline border border-green-300 rounded py-2 px-4 block w-full leading-normal placeholder-green-300',
+  //     },
+  //   },
+  // },
 }
 
 Vue.use(VueTailwind, settings)

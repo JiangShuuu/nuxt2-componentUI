@@ -32,17 +32,52 @@
         </div>
 
         <!-- table -->
-        <t-table
-          class="mt-[30px] mb-[60px]"
-          :headers="fields"
-          :data="lists"
-        >
+        <t-table class="mt-[30px] mb-[60px]" :headers="fields" :data="lists">
+          <template slot="thead" slot-scope="props">
+            <thead>
+              <tr>
+                <th :class="props.thClass" class="flex">
+                  <label class="mr-1 common-checkbox"
+                    ><input
+                      v-model="selectAll"
+                      type="checkbox"
+                      @change="toggleSelectAll"
+                    />
+                    <span class="checkbox"></span>
+                  </label>
+                  {{ props.data[0].text }}
+                </th>
+                <th :class="props.thClass">
+                  {{ props.data[1].text }}
+                </th>
+                <th :class="props.thClass">
+                  {{ props.data[2].text }}
+                </th>
+                <th :class="props.thClass">
+                  {{ props.data[3].text }}
+                </th>
+                <th :class="props.thClass">
+                  {{ props.data[4].text }}
+                </th>
+                <th :class="props.thClass">
+                  {{ props.data[5].text }}
+                </th>
+              </tr>
+            </thead>
+          </template>
           <template slot="row" slot-scope="props">
-            <tr
-              class="hover:bg-primary-extralight"
-            >
+            <tr class="hover:bg-primary-extralight">
               <td class="px-4 py-6">
-                <input id="scales" type="checkbox" name="scales" checked>
+                <label class="common-checkbox"
+                  ><input
+                    v-model="selectedItems"
+                    :value="props.row.ids"
+                    type="checkbox"
+                    @change="toggleSelect"
+                  />
+                  <span class="checkbox"></span>
+                  <span class="checkbox-text"></span>
+                </label>
               </td>
               <td class="px-4 py-6 w-[84px]">
                 {{ props.row.ids }}
@@ -95,11 +130,8 @@ export default {
       lists: fakeData,
       selectedItems: [],
       selectAll: false,
-      fields: [ '全選','序號','職缺編號','職務名稱','職務類別','地區' ],
+      fields: ['全選', '序號', '職缺編號', '職務名稱', '職務類別', '地區'],
     }
-  },
-  mounted() {
-    console.log('tt', this.lists)
   },
   methods: {
     onModalClose() {
