@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex items-center justify-between border-4 height">
     <client-only>
       <transition name="slide-fade">
         <!-- <t-alert :show="show"> My Alert </t-alert> -->
@@ -14,6 +14,9 @@
     <!-- <button @click="show = !show">
       Toggle alertss
     </button> -->
+    <div class="border">
+      fsadsa
+    </div>
   </div>
 </template>
 
@@ -29,6 +32,9 @@ export default {
 </script>
 
 <style>
+.height {
+  height: 1000px;
+}
 /* based on https://vuejs.org/v2/guide/transitions.html#CSS-Transitions
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
