@@ -2,7 +2,9 @@
 <template>
   <transition name="slide-fade">
     <TModal name="test-modal">
-      <div class="border p-5 rounded bg-white">getHIHIHI</div>
+      <div class="border p-5 rounded bg-white">
+        <p>ewqewq</p>
+      </div>
     </TModal>
   </transition>
 </template>
