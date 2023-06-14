@@ -21,11 +21,11 @@ const settings = {
         overlay:
           'p-2 z-100 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed bg-opacity-50 bg-black',
         wrapper: 'z-50 relative mx-auto',
-        modal: 'bg-white rounded',
+        modal: '',
         body: '',
         header: '',
         footer: '',
-        close: 'absolute right-0 top-0 m-3 focus:outline-none text-blue-dark',
+        close: 'absolute right-2 top-2 focus:outline-none text-gray',
         closeIcon: 'h-5 w-5 fill-current',
       },
       classes: {
@@ -33,7 +33,8 @@ const settings = {
         // 寬
         wrapper: 'max-w-lg my-12',
         modal: '',
-        body: 'px-6 py-4',
+        // 白底
+        body: '',
         header: '',
         footer: '',
         close: '',
