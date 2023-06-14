@@ -6,7 +6,7 @@
     class="modal-dialog"
     :hide-footer="true"
   >
-    <div class="m-6 ml-12">
+    <div class="m-6">
       <div class="flex justify-end">
         <div class="text-2xl cursor-pointer text-gray" @click="onModalClose">X</div>
       </div>

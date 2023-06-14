@@ -25,20 +25,19 @@ const settings = {
         body: '',
         header: '',
         footer: '',
-        close: 'absolute right-2 top-2 focus:outline-none text-gray',
+        close: 'absolute right-6 top-6 focus:outline-none text-gray',
         closeIcon: 'h-5 w-5 fill-current',
       },
       classes: {
         overlay: '',
         // 寬
-        wrapper: 'max-w-lg my-12',
+        wrapper: 'w-[1200px] my-5',
         modal: '',
-        // 白底
         body: '',
         header: '',
         footer: '',
         close: '',
-        closeIcon: 'text-blue-dark',
+        closeIcon: '',
       },
       escToClose: false,
     },
