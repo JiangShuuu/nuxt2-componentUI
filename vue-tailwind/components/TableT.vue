@@ -17,10 +17,18 @@
               {{ props.data[0].text }}
             </th>
             <th :class="props.thClass" @click="sortTable('ids')">
-              {{ props.data[1].text }}
+              <div class="flex items-center cursor-pointer">
+                <p>{{ props.data[1].text }}</p>
+                <!-- <img v-if="sortKey === 'ids' && sortOrder === -1" src="../assets/img/sort-down.svg" class="w-5 h-5" />
+                <img v-else src="../assets/img/sort-up.svg" class="w-5 h-5" /> -->
+              </div>
             </th>
             <th :class="props.thClass" @click="sortTable('jobnum')">
-              {{ props.data[2].text }}
+              <div class="flex items-center cursor-pointer">
+                <p>{{ props.data[2].text }}</p>
+                <!-- <img v-if="sortKey === 'jobnum' && sortOrder === -1" src="../assets/img/sort-down.svg" class="w-5 h-5" />
+                <img v-else src="../assets/img/sort-up.svg" class="w-5 h-5" /> -->
+              </div>
             </th>
             <th :class="props.thClass">
               {{ props.data[3].text }}
@@ -28,8 +36,12 @@
             <th :class="props.thClass">
               {{ props.data[4].text }}
             </th>
-            <th :class="props.thClass">
-              {{ props.data[5].text }}
+            <th :class="props.thClass" @click="sortTable('area')">
+              <div class="flex items-center cursor-pointer">
+                <p>{{ props.data[5].text }}</p>
+                <!-- <img v-if="sortKey === 'area' && sortOrder === -1" src="../assets/img/sort-down.svg" class="w-5 h-5" />
+                <img v-else src="../assets/img/sort-up.svg" class="w-5 h-5" /> -->
+              </div>
             </th>
           </tr>
         </thead>
@@ -96,24 +108,15 @@ export default {
   computed: {
     sortedItems() {
       if (this.sortKey) {
-        return orderBy(
-          this.lists,
-          this.sortKey,
-          this.sortOrder === 1 ? 'asc' : 'desc'
-        )
-        // return orderBy(this.items, [item => Number(item[this.sortKey])], [this.sortOrder === 1 ? 'asc' : 'desc'])
+        return orderBy(this.lists, [item => Number(item[this.sortKey])], [this.sortOrder === 1 ? 'asc' : 'desc'])
       }
       return this.lists
     },
   },
   methods: {
     sortTable(key) {
-      if (this.sortKey === key) {
-        this.sortOrder *= -1
-      } else {
-        this.sortKey = key
-        this.sortOrder = 1
-      }
+      if (this.sortKey !== key) this.sortKey = key
+      this.sortOrder *= -1
     },
     toggleSelectAll() {
       this.selectedItems = this.selectAll

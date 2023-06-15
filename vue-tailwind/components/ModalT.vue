@@ -46,7 +46,7 @@ const generateFakeData = (num) => {
     const jobnum = i * 10
     const job = '【春水堂】正職人員-新竹湳雅店(大魯閣湳雅廣場)'
     const category = '品管／檢驗人員'
-    const area = '台中市南屯區'
+    const area = `${i}台中市南屯區`
     data.push({
       ids,
       jobnum,
