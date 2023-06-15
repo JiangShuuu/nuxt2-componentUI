@@ -31,74 +31,8 @@
           </p>
         </div>
 
-        <!-- table -->
-        <t-table class="mt-[30px] mb-[60px]" :headers="fields" :data="lists">
-          <!-- Custom Header -->
-          <template slot="thead" slot-scope="props">
-            <thead>
-              <tr>
-                <th :class="props.thClass" class="flex">
-                  <label class="mr-1 common-checkbox"
-                    ><input
-                      v-model="selectAll"
-                      type="checkbox"
-                      @change="toggleSelectAll"
-                    />
-                    <span class="checkbox"></span>
-                  </label>
-                  {{ props.data[0].text }}
-                </th>
-                <th :class="props.thClass">
-                  {{ props.data[1].text }}
-                </th>
-                <th :class="props.thClass">
-                  {{ props.data[2].text }}
-                </th>
-                <th :class="props.thClass">
-                  {{ props.data[3].text }}
-                </th>
-                <th :class="props.thClass">
-                  {{ props.data[4].text }}
-                </th>
-                <th :class="props.thClass">
-                  {{ props.data[5].text }}
-                </th>
-              </tr>
-            </thead>
-          </template>
-          <!-- Custom Item -->
-          <template slot="row" slot-scope="props">
-            <tr class="hover:bg-primary-extralight">
-              <td class="px-4 py-6">
-                <label class="common-checkbox"
-                  ><input
-                    v-model="selectedItems"
-                    :value="props.row.ids"
-                    type="checkbox"
-                    @change="toggleSelect"
-                  />
-                  <span class="checkbox"></span>
-                  <span class="checkbox-text"></span>
-                </label>
-              </td>
-              <td class="px-4 py-6 w-[84px]">
-                {{ props.row.ids }}
-              </td>
-              <td class="px-4 py-6 w-[104px]">
-                {{ props.row.jobnum }}
-              </td>
-              <td class="px-4 py-6 w-[439px]">
-                {{ props.row.job }}
-              </td>
-              <td class="px-4 py-6 w-[209px]">
-                {{ props.row.category }}
-              </td>
-              <td class="px-4 py-6 w-[209px]">
-                {{ props.row.area }}
-              </td>
-            </tr>
-          </template>
-        </t-table>
+        <TableT :fields="fields" :lists="lists" />
+
       </div>
     </TModal>
   </transition>
@@ -130,24 +64,12 @@ export default {
   data() {
     return {
       lists: fakeData,
-      selectedItems: [],
-      selectAll: false,
       fields: ['全選', '序號', '職缺編號', '職務名稱', '職務類別', '地區'],
     }
   },
   methods: {
     onModalClose() {
       this.$root.$emit('bv::hide::modal', 'manage-modal')
-    },
-    toggleSelectAll() {
-      this.selectedItems = this.selectAll
-        ? this.lists.map((item) => item.ids)
-        : []
-    },
-    toggleSelect() {
-      this.selectedItems.length === this.lists.length
-        ? (this.selectAll = true)
-        : (this.selectAll = false)
     },
   },
 }

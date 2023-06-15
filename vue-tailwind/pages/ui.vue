@@ -6,7 +6,6 @@
     </button>
     <button class="w-20 btn btn_primary">Toast</button>
     <button class="w-20 btn btn_primary">Tooltip</button>
-    <Table />
   </div>
 </template>
 
