@@ -95,3 +95,8 @@
         }
     }
 }
+
+/* for modal */
+html {
+  scrollbar-gutter: stable;
+}
