@@ -8,12 +8,16 @@
   >
     <div class="m-6">
       <div class="flex justify-end">
-        <div class="text-2xl cursor-pointer text-gray" @click="onModalClose">X</div>
+        <div class="text-2xl cursor-pointer text-gray" @click="onModalClose">
+          X
+        </div>
       </div>
 
       <p class="text-2xl font-bold">公司職缺篩選</p>
 
-      <div class="flex items-center justify-between p-6 mt-4 border-t border-b border-gray-200 bg-yellow">
+      <div
+        class="flex items-center justify-between p-6 mt-4 border-t border-b border-gray-200 bg-yellow"
+      >
         <div class="flex-1 header_content">
           <div class="flex mb-4 font-bold">
             <p class="w-1/6">統編</p>
@@ -28,17 +32,29 @@
             <span>23</span>
           </div>
         </div>
-        <button class="w-[154px] btn btn_primary" @click="onModalClose">儲存</button>
+        <button class="w-[154px] btn btn_primary" @click="onModalClose">
+          儲存
+        </button>
       </div>
 
       <div class="flex items-center mt-9">
         <p class="mr-4 text-2xl font-bold">參與活動職缺</p>
-        <p class="text-gray">共 <span class="text-primary">5600</span> 家公司</p>
+        <p class="text-gray">
+          共 <span class="text-primary">5600</span> 家公司
+        </p>
       </div>
 
       <!-- table -->
       <div class="mt-[30px] mb-[60px]">
-        <b-table class="table" hover :items="lists" :fields="fields" responsive>
+        <b-table
+          class="table"
+          hover
+          :items="lists"
+          :fields="fields"
+          :sort-by.sync="sortBy"
+          :sort-desc.sync="sortDesc"
+          responsive
+        >
           <template #head(action)="row">
             <label class="common-checkbox"
               ><input
@@ -80,7 +96,7 @@ const generateFakeData = (num) => {
     const jobnum = i * 10
     const job = '【春水堂】正職人員-新竹湳雅店(大魯閣湳雅廣場)'
     const category = '品管／檢驗人員'
-    const area = '台中市南屯區'
+    const area = `${i}台中市南屯區`
     data.push({
       ids,
       jobnum,
@@ -98,6 +114,8 @@ export default {
   data() {
     return {
       lists: fakeData,
+      sortBy: '',
+      sortDesc: false,
       selectedItems: [],
       selectAll: false,
       fields: [
@@ -110,11 +128,13 @@ export default {
           key: 'ids',
           label: '序號',
           thStyle: { width: '8%' },
+          sortable: true
         },
         {
           key: 'jobnum',
           label: '職缺編號',
           thStyle: { width: '10%' },
+          sortable: true
         },
         {
           key: 'job',
@@ -130,6 +150,7 @@ export default {
           key: 'area',
           label: '地區',
           thStyle: { width: '20%' },
+          sortable: true
         },
       ],
     }
