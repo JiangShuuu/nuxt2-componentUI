@@ -1,12 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <nuxt class="overflow-hidden main-screen"/>
-    <!-- modal -->
-    <client-only>
-      <ModalT />
-    </client-only>
-    <!-- <PortalTarget name="modal" multiple /> -->
+    <nuxt />
   </div>
 </template>
 
