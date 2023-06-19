@@ -27,8 +27,8 @@ export default {
         this.showWrap = true
         this.showContent = true
 
-        this.timer = setTimeout(() => {this.showContent = false} ,this.duration - 1250)
-        this.timer02 = setTimeout(() => {this.showWrap = false} ,this.duration)
+        this.timer = setTimeout(() => {this.showContent = false} ,this.duration)
+        this.timer02 = setTimeout(() => {this.showWrap = false} ,this.duration + 1250)
     }
   },
 }

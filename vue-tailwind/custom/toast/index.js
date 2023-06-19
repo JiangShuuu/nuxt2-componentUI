@@ -23,12 +23,12 @@ function showToast(text, duration = 2000) {
 
   setTimeout(() => {
     toastDom.showContent = false
-  }, duration - 1250)
-  
+  }, duration)
+
   setTimeout(() => {
     toastDom.showWrap = false
     document.body.removeChild(toastDom.$el)
-  }, duration)
+  }, duration + 1250)
 }
 
 function registryToast() {
