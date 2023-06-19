@@ -14,10 +14,11 @@
       ref="floatingRef"
       :class="[
         isHidden && 'hidden',
-        'absolute bg-gray-900 text-sm text-white px-3 py-1.5 rounded-md cursor-default',
+        'tooltip-content',
+        isOpacity && 'opacity-0',
       ]"
     >
-      {{content}}
+      {{ content }}
       <div ref="arrowRef" class="absolute w-2 h-2 rotate-45 bg-gray-900"></div>
     </div>
   </div>
@@ -26,23 +27,23 @@
 <script>
 import { computePosition, flip, offset, shift, arrow } from '@floating-ui/dom'
 export default {
-  name: 'PopOver',
+  name: 'ToolTip',
   props: {
     content: {
       type: String,
-      default: ""
+      default: '',
     },
     placement: {
       type: String,
-      default: 'bottom'
-    }
+      default: 'bottom',
+    },
   },
   data() {
     return {
       isHidden: true,
+      isOpacity: true,
     }
   },
-  async mounted() {},
   methods: {
     async calculatePosition() {
       const refer = this.$refs.referenceRef
@@ -88,13 +89,26 @@ export default {
 
       // console.log('get', middlewareData, placement)
     },
+    // ani 待解
     hide() {
-      this.isHidden = true
+      clearTimeout(this.timer)
+      this.isOpacity = true
+      this.timer = setTimeout(() => {
+        this.isHidden = true
+      }, 300)
     },
     show() {
       this.isHidden = false
+      this.isOpacity = false
       this.calculatePosition()
     },
   },
 }
 </script>
+
+<style lang="postcss" scoped>
+.tooltip-content {
+  transition: opacity 0.3s;
+  @apply absolute bg-gray-900 text-sm text-white px-3 py-1.5 rounded-md cursor-default;
+}
+</style>
