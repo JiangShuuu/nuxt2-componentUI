@@ -18,7 +18,7 @@ export default {
   css: ['@/assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/vue-tailwind.js', mode: 'client' }],
+  plugins: [{ src: '~/plugins/vue-tailwind.js', mode: 'client' }, { src: '~/plugins/custom.js', mode: 'client' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

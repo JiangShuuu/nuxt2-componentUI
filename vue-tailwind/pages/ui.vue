@@ -4,7 +4,7 @@
     <button class="w-20 btn btn_primary" @click="openModal">
       Modal
     </button>
-    <button class="w-20 btn btn_primary">Toast</button>
+    <button class="w-20 btn btn_primary" @click="$toast('彈窗測測測')">Toast</button>
     <button class="w-20 btn btn_primary">Tooltip</button>
   </div>
 </template>
