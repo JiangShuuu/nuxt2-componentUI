@@ -5,13 +5,16 @@
       Modal
     </button>
     <button class="w-20 btn btn_primary" @click="$toast('CustomToast01!!')">Toast</button>
-    <button  v-tooltip="'tooltip!'" class="w-20 btn btn_primary">Tooltip</button>
-    <Popover position="top" trigger="click">
+    <button v-tooltip="'tooltip!'" class="w-20 btn btn_primary">Tooltip</button>
+    <Pop content="This is Tooltip02!!">
+      <button class="w-20 btn btn_primary">Tooltip02</button>
+    </Pop>
+    <!-- <Popover position="top" trigger="click">
       <template slot="content">
         <div>鼠标点击弹出，再次点击别处消失</div>
       </template>
       <div>BTN</div>
-    </Popover>
+    </Popover> -->
 
      <!-- <t-popover>
         <template slot="content">
