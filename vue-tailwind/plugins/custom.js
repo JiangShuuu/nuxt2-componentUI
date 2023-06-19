@@ -46,12 +46,15 @@ const tooltipDirective = {
     document.head.appendChild(style);
     
     el.addEventListener('mouseenter', function () {
+      clearTimeout(this.timer)
       tooltip.style.visibility = 'visible'
       tooltip.style.opacity = '1'
     })
     el.addEventListener('mouseleave', function () {
-      tooltip.style.visibility = 'hidden'
       tooltip.style.opacity = '0'
+      this.timer = setTimeout(() => {
+        tooltip.style.visibility = 'hidden'
+      }, 500)
     })
   },
 }
