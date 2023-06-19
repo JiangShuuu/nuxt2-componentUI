@@ -5,7 +5,7 @@
       Modal
     </button>
     <button class="w-20 btn btn_primary" @click="$toast('CustomToast01!!')">Toast</button>
-    <button  v-tooltip="'This is a tooltip'" class="w-20 btn btn_primary">Tooltip</button>
+    <button  v-tooltip="'tooltip!'" class="w-20 btn btn_primary">Tooltip</button>
     <!-- <button class="w-20 btn btn_primary" @click="openToast">Toast</button> -->
     
     <!-- <Tooltip>

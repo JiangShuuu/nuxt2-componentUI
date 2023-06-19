@@ -22,7 +22,7 @@ const tooltipDirective = {
     style.textContent = `
       .tooltiptext {
         visibility: hidden;
-        width: 120px;
+        min-width: 100px;
         background-color: #292929;
         color: #fff;
         text-align: center;
@@ -30,11 +30,11 @@ const tooltipDirective = {
         padding: 5px;
         position: absolute;
         z-index: 1;
-        bottom: 125%;
+        bottom: 130%;
         left: 50%;
-        margin-left: -60px;
         opacity: 0;
         transition: opacity 0.3s;
+        transform: translateX(-50%);
       }
       .tooltiptext::after {
         content: '';
