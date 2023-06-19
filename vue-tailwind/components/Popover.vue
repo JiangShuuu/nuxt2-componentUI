@@ -1,149 +1,128 @@
 <template>
-  <div ref="popover" class="popover">
-    <div
-      v-if="visible"
-      ref="contentWrapper"
-      class="content-wrapper"
-      :class="{ [`position-${position}`]: true }"
-    >
-      <slot name="content" :close="close"></slot>
-    </div>
-    <!-- span标签增加display: inline-block; 解决包裹元素高度一致的问题 -->
-    <span ref="triggerWrapper" style="display: inline-block">
+  <div class="inline-block">
+    <div ref="referenceRef" class="inline-block" @click="show" @blur="hide">
       <slot></slot>
-    </span>
+    </div>
+    <div
+      ref="floatingRef"
+      :class="[
+        isHidden && 'hidden',
+        'popover-content',
+        isOpacity && 'opacity-0',
+      ]"
+    >
+      <div class="p-5 popover-box">
+        <div class="flex justify-end">
+          <div class="w-4 h-4 cursor-pointer text-gray" @click="hide">X</div>
+        </div>
+        <div class="w-[400px] mt-4">
+          <div class="text-lg font-bold text-center">確定要刪除嗎？</div>
+          <div class="flex mt-6 justify-evenly">
+            <button class="w-[137px] btn btn_primary" @click="hide">
+              確定
+            </button>
+            <button class="w-[137px] btn btn_secondary" @click="hide">
+              取消
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        ref="arrowRef"
+        class="absolute w-3 h-3 rotate-45 bg-white popover-arrow"
+      ></div>
+    </div>
   </div>
 </template>
+
 <script>
+import { computePosition, flip, offset, shift, arrow } from '@floating-ui/dom'
+
 export default {
   name: 'PopoverPage',
   props: {
-    position: {
+    placement: {
       type: String,
-      default: 'top',
-      validator(value) {
-        return ['top', 'bottom', 'left', 'right'].includes(value)
-      },
-    },
-    trigger: {
-      type: String,
-      default: 'click',
-      validator(value) {
-        return ['click', 'hover', 'focus'].includes(value)
-      },
+      default: 'bottom',
     },
   },
   data() {
     return {
-      visible: false,
-    }
-  },
-  mounted() {
-    const popover = this.$refs.popover
-    if (this.trigger === 'click') {
-      popover.addEventListener('click', this.onClick)
-    } else if (this.trigger === 'hover') {
-      popover.addEventListener('mouseenter', this.open) // 添加hover监听事件
-      popover.addEventListener('mouseleave', this.close) // 取消hover监听事件
-    } else {
-      popover.addEventListener('mousedown', this.open) // 添加hover监听事件
-      popover.addEventListener('mouseup', this.close) // 取消hover监听事件
-    }
-  },
-
-  destroyed() {
-    // 页面销毁的时候去掉监听
-    const popover = this.$refs.popover
-    if (this.trigger === 'click') {
-      popover.removeEventListener('click', this.open())
-    } else if (this.trigger === 'hover') {
-      popover.removeEventListener('mouseenter', this.open) // 添加hover监听事件
-      popover.removeEventListener('mouseleave', this.close) // 取消hover监听事件
-    } else {
-      popover.removeEventListener('mousedown', this.open())
-      popover.removeEventListener('mouseup', this.close())
+      isHidden: true,
+      isOpacity: true,
     }
   },
   methods: {
-    positionContent() {
-      document.body.appendChild(this.$refs.contentWrapper)
-      const { contentWrapper, triggerWrapper } = this.$refs
-      const { width, height, top, left } = triggerWrapper.getBoundingClientRect()
-      if (this.position === 'top') {
-        contentWrapper.style.left = left + window.scrollX + 'px'
-        this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
-      } else if (this.position === 'bottom') {
-        contentWrapper.style.left = left + window.scrollX + 'px'
-        contentWrapper.style.top = top + height + window.scrollY + 'px'
-      } else if (this.position === 'left') {
-        contentWrapper.style.left = left + window.scrollX + 'px'
-        contentWrapper.style.top = top + window.scrollY + 'px'
-      } else if (this.position === 'right') {
-        contentWrapper.style.left = left + width + window.scrollX + 'px'
-        contentWrapper.style.top = top + window.scrollY + 'px'
-      }
-    },
-    onClickDocument(e) {
-      // 如果点击在popover 则让popover自己去处理，document不管
-      if (
-        this.$refs.contentWrapper &&
-        this.$refs.contentWrapper.contains(e.target)
-      ) {
-        return
-      }
-      this.close()
-    },
-    open() {
-      this.visible = true
-      setTimeout(() => {
-        this.positionContent()
-        document.addEventListener('click', this.onClickDocument)
-      })
-    },
-    close() {
-      this.visible = false
-      document.removeEventListener('click', this.onClickDocument)
-    },
-    onClick(event) {
-      if (this.$refs.triggerWrapper.contains(event.target)) {
-        // 找到点击事件的元素
-        if (this.visible) {
-          this.close()
-        } else {
-          this.open()
+    async calculatePosition() {
+      const refer = this.$refs.referenceRef
+      const floating = this.$refs.floatingRef
+      const arrowRef = this.$refs.arrowRef
+
+      const { x, y, middlewareData, placement } = await computePosition(
+        refer,
+        floating,
+        {
+          placement: this.placement,
+          middleware: [
+            offset(10),
+            flip(),
+            shift({ padding: 10 }),
+            arrow({ element: arrowRef }),
+          ],
         }
-      }
+      )
+
+      Object.assign(floating.style, {
+        left: `${x}px`,
+        top: `${y}px`,
+      })
+
+      const opposedSide = {
+        right: 'left',
+        left: 'right',
+        bottom: 'top',
+        top: 'bottom',
+      }[placement.split('-')[0]]
+
+      // arrow
+      const { x: arrowX, y: arrowY } = middlewareData.arrow
+
+      Object.assign(arrowRef.style, {
+        left: arrowX ? `${arrowX}px` : '',
+        top: arrowY ? `${arrowY}px` : '',
+        bottom: '',
+        right: '',
+        [opposedSide]: '-6px',
+      })
+
+      // console.log('get', middlewareData, placement)
+    },
+    // ani 待解
+    hide() {
+      clearTimeout(this.timer)
+      this.isOpacity = true
+      this.timer = setTimeout(() => {
+        this.isHidden = true
+      }, 300)
+    },
+    show() {
+      this.isHidden = false
+      this.isOpacity = false
+      this.calculatePosition()
     },
   },
 }
 </script>
 
 <style lang="postcss" scoped>
-.dialog {
-  background: #fff;
-  position: absolute;
-  width: 80px;
-  z-index: 100;
-  border: 1px solid #ebeef5;
-  box-shadow: 1px 1px 2px 0px rgba(192, 196, 204, 1),
-    -1px -1px 2px 0px rgba(192, 196, 204, 1);
-  &-arrow {
-    width: 0;
-    height: 0;
-    border: 14px solid transparent;
-    border-right-color: rgba(192, 196, 204, 0.7);
-    position: relative;
-    top: 25px;
-    left: -29px;
-  }
-  &-insideArrow {
-    width: 0;
-    height: 0;
-    border: 12px solid transparent;
-    border-right-color: #fff;
-    position: relative;
-    top: -1px;
-    left: -24px;
-  }
+.popover-content {
+  transition: opacity 0.3s;
+  z-index: 99999;
+  @apply absolute bg-white;
+}
+.popover-box {
+  @apply rounded-md;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 </style>
