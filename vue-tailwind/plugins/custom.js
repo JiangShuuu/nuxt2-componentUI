@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import toast from '../custom/toast/index'
-import ToastT from '../components/ToastT'
 
-// 定義自訂指令
 const tooltipDirective = {
   inserted(el, binding) {
     const tooltipText = binding.value
@@ -12,13 +10,11 @@ const tooltipDirective = {
     tooltip.className = 'tooltiptext'
     tooltip.textContent = tooltipText
 
-    // 將 tooltip element 加入到目標元素中
     el.style.position = 'relative'
     el.appendChild(tooltip)
 
     // Tooltip 樣式
     const style = document.createElement('style');
-
     style.textContent = `
       .tooltiptext {
         visibility: hidden;
@@ -49,7 +45,6 @@ const tooltipDirective = {
     `
     document.head.appendChild(style);
     
-    // hover 事件處理
     el.addEventListener('mouseenter', function () {
       tooltip.style.visibility = 'visible'
       tooltip.style.opacity = '1'
@@ -61,7 +56,5 @@ const tooltipDirective = {
   },
 }
 
-// 註冊自訂指令
 Vue.directive('tooltip', tooltipDirective)
-Vue.component(ToastT)
 Vue.use(toast)
