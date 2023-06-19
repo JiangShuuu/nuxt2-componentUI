@@ -26,7 +26,7 @@ export default {
 
         this.showWrap = true
         this.showContent = true
-        
+
         this.timer = setTimeout(() => {this.showContent = false} ,this.duration - 1250)
         this.timer02 = setTimeout(() => {this.showWrap = false} ,this.duration)
     }
@@ -38,11 +38,10 @@ export default {
 .wrap {
   position: fixed;
   left: 50%;
-  top: 50%;
-  background: rgba(0, 0, 0, 0.35);
-  padding: 10px;
-  border-radius: 5px;
-  transform: translate(-50%, -50%);
+  top: 9px;
+  background: #292929;
+  border-radius: 4px;
+  transform: translateX(-50%);
   color: #fff;
 }
 .fadein {

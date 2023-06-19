@@ -7,7 +7,9 @@
     <button class="w-20 btn btn_primary" @click="openToast">Toast</button>
     <button class="w-20 btn btn_primary">Tooltip</button>
     <ToastT ref="toast" :duration="2000">
-      AABBCC
+      <div class="w-[348px] h-[88px] flex items-center justify-center">
+        CustomToast!!
+      </div>
     </ToastT>
   </div>
 </template>
