@@ -25,6 +25,7 @@ const tooltipDirective = {
         border-radius: 6px;
         padding: 5px;
         position: absolute;
+        cursor: default;
         z-index: 1;
         bottom: 130%;
         left: 50%;
