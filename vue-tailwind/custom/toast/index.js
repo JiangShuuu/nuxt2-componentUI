@@ -1,12 +1,9 @@
 import vue from 'vue'
-
 import toastComponent from './toast.vue'
 
-// 返回一个 Vue extend
 const ToastConstructor = vue.extend(toastComponent)
 
 function showToast(text, duration = 2000) {
-  // 掛載
   const toastDom = new ToastConstructor({
     el: document.createElement('div'),
     data() {
@@ -18,7 +15,6 @@ function showToast(text, duration = 2000) {
     },
   })
 
-  // 塞到 body
   document.body.appendChild(toastDom.$el)
 
   setTimeout(() => {
