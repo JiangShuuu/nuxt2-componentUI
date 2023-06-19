@@ -1,5 +1,9 @@
 <template>
-    <div v-if="showWrap" class="wrap" :class="showContent ?'fadein':'fadeout'">{{text}}</div>
+    <div v-if="showWrap" class="wrap" :class="showContent ?'fadein':'fadeout'">
+      <div class="w-[348px] h-[88px] flex items-center justify-center">
+        {{text}}
+      </div>
+    </div>
 </template>
 
 <script>
@@ -12,12 +16,11 @@ export default {
   .wrap{
     position: fixed;
     left: 50%;
-    top:50%;
-    background: rgba(0,0,0,.35);
-    padding: 10px;
-    border-radius: 5px;
-    transform: translate(-50%,-50%);
-    color:#fff;
+    top: 9px;
+    background: #292929;
+    border-radius: 4px;
+    transform: translateX(-50%);
+    color: #fff;
   }
   .fadein {
     animation: animate_in 0.25s;

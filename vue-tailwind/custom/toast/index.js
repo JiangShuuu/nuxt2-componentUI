@@ -22,7 +22,6 @@ function showToast(text, duration = 2000) {
   document.body.appendChild(toastDom.$el)
 
   setTimeout(() => {toastDom.showContent = false} ,duration - 1250)
-
   setTimeout(() => {toastDom.showWrap = false} ,duration)
 }
 
