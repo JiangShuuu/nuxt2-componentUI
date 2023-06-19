@@ -12,7 +12,7 @@
   /* btn */
   .btn {
     /* all: unset; */
-    @apply py-3 w-full flex items-center justify-center cursor-pointer rounded max-h-9;
+    @apply py-3 flex items-center justify-center cursor-pointer rounded max-h-9;
     transition: 0.2s;
     &_secondary {
       @apply border border-primary text-primary bg-white;

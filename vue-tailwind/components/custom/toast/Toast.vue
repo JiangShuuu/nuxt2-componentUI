@@ -1,5 +1,5 @@
 <template>
-    <div v-if="showWrap" class="wrap" :class="showContent ?'fadein':'fadeout'">
+    <div v-if="showWrap" class="toast-content" :class="showContent ?'fadein':'fadeout'">
       {{text}}
     </div>
 </template>
@@ -10,20 +10,12 @@ export default {
 }
 </script>
 
-<style scoped>
-  .wrap{
-    position: fixed;
+<style lang="postcss" scoped>
+  .toast-content{
+    @apply fixed flex items-center justify-center bg-[#292929] rounded left-1/2 -translate-x-1/2 text-white;
     width: 348px;
     height: 88px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    left: 50%;
     top: 9px;
-    background: #292929;
-    border-radius: 4px;
-    transform: translateX(-50%);
-    color: #fff;
   }
   .fadein {
     animation: animate_in 0.25s;

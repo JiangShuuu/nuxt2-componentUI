@@ -1,6 +1,6 @@
 <template>
-  <div class="inline-block">
-    <div ref="referenceRef" class="inline-block" @click="show" @blur="hide">
+  <div class="inline-block" tabindex="1"  @blur="hide">
+    <div ref="referenceRef" class="inline-block" @click="show" >
       <slot></slot>
     </div>
     <div
