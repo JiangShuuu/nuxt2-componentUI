@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import toast from '../custom/toast/index'
+import toast from '../components/custom/toast/index'
 
 const tooltipDirective = {
   inserted(el, binding) {
@@ -44,7 +44,7 @@ const tooltipDirective = {
       }
     `
     document.head.appendChild(style);
-    
+
     el.addEventListener('mouseenter', function () {
       clearTimeout(this.timer)
       tooltip.style.visibility = 'visible'
