@@ -4,8 +4,11 @@
     <button class="w-20 btn btn_primary" @click="openModal">
       Modal
     </button>
-    <button class="w-20 btn btn_primary" @click="$toast('彈窗測測測')">Toast</button>
+    <button class="w-20 btn btn_primary" @click="openToast">Toast</button>
     <button class="w-20 btn btn_primary">Tooltip</button>
+    <ToastT ref="toast" :duration="2000">
+      AABBCC
+    </ToastT>
   </div>
 </template>
 
@@ -15,6 +18,9 @@ export default {
   methods: {
     openModal() {
         this.$modal.show('test-modal')
+    },
+    openToast() {
+      this.$refs.toast.open()
     }
   },
 }
