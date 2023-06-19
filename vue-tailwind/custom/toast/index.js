@@ -21,8 +21,14 @@ function showToast(text, duration = 2000) {
   // 塞到 body
   document.body.appendChild(toastDom.$el)
 
-  setTimeout(() => {toastDom.showContent = false} ,duration - 1250)
-  setTimeout(() => {toastDom.showWrap = false} ,duration)
+  setTimeout(() => {
+    toastDom.showContent = false
+  }, duration - 1250)
+  
+  setTimeout(() => {
+    toastDom.showWrap = false
+    document.body.removeChild(toastDom.$el)
+  }, duration)
 }
 
 function registryToast() {
