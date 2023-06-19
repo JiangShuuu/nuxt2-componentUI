@@ -67,11 +67,7 @@ export default {
       fields: ['全選', '序號', '職缺編號', '職務名稱', '職務類別', '地區'],
     }
   },
-  methods: {
-    onModalClose() {
-      this.$root.$emit('bv::hide::modal', 'manage-modal')
-    },
-  },
+  methods: {},
 }
 </script>
 
