@@ -1,8 +1,6 @@
 <template>
     <div v-if="showWrap" class="wrap" :class="showContent ?'fadein':'fadeout'">
-      <div class="w-[348px] h-[88px] flex items-center justify-center">
-        {{text}}
-      </div>
+      {{text}}
     </div>
 </template>
 
@@ -15,6 +13,11 @@ export default {
 <style scoped>
   .wrap{
     position: fixed;
+    width: 348px;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     left: 50%;
     top: 9px;
     background: #292929;

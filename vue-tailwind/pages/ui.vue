@@ -6,6 +6,7 @@
     </button>
     <button class="w-20 btn btn_primary" @click="$toast('CustomToast01!!')">Toast</button>
     <button  v-tooltip="'tooltip!'" class="w-20 btn btn_primary">Tooltip</button>
+    <Popover />
   </div>
 </template>
 
