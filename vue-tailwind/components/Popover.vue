@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { computePosition, flip, offset, shift, arrow, autoUpdate } from '@floating-ui/dom'
+import { computePosition, flip, offset, shift, arrow, autoUpdate, autoPlacement } from '@floating-ui/dom'
 
 export default {
   name: 'PopoverPage',
@@ -77,12 +77,13 @@ export default {
           refer,
           floating,
           {
-            placement: this.placement,
+            // placement: this.placement,
             middleware: [
               offset(10),
               flip(),
               shift({ padding: 10 }),
               arrow({ element: arrowRef }),
+              autoPlacement(),
             ],
           }
         ).then(({x, y, middlewareData, placement}) => {
