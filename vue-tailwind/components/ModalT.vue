@@ -1,6 +1,6 @@
 <template>
   <transition name="slide-fade">
-    <TModal name="test-modal">
+    <TModal name="test-modal" @before-open="onBeforeOpen">
       <div class="p-6 bg-white border rounded">
         <p class="mt-8 text-2xl font-bold">公司職缺篩選</p>
 
@@ -67,7 +67,11 @@ export default {
       fields: ['全選', '序號', '職缺編號', '職務名稱', '職務類別', '地區'],
     }
   },
-  methods: {},
+  methods: {
+    onBeforeOpen({ params }) {
+      console.log('getParams', params)
+    }
+  },
 }
 </script>
 

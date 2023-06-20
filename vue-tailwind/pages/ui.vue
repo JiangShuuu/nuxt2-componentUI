@@ -24,7 +24,7 @@ export default {
   name: 'ComponentUI',
   methods: {
     openModal() {
-      this.$modal.show('test-modal')
+      this.$modal.show('test-modal', {id: 123})
     },
     openToast() {
       this.$refs.toast.open()
