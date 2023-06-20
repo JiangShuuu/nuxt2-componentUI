@@ -58,20 +58,6 @@ export default {
       const floating = this.$refs.floatingRef
       const arrowRef = this.$refs.arrowRef
 
-      // const { x, y, middlewareData, placement } = await computePosition(
-      //   refer,
-      //   floating,
-      //   {
-      //     placement: this.placement,
-      //     middleware: [
-      //       offset(10),
-      //       flip(),
-      //       shift({ padding: 10 }),
-      //       arrow({ element: arrowRef }),
-      //     ],
-      //   }
-      // )
-
       autoUpdate(refer, floating, ()=> {
         computePosition(
           refer,
