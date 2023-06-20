@@ -38,13 +38,13 @@ const settings = {
     component: TTable,
     props: {
       classes: {
-        table: 'min-w-full shadow-sm',
+        table: 'min-w-full',
         thead: '',
         theadTr: '',
         theadTh: 'px-4 py-6 font-semibold text-left',
         tbody: '',
         tr: '',
-        td: 'px-4 py-6 border',
+        td: '',
         tfoot: '',
         tfootTr: '',
         tfootTd: '',
