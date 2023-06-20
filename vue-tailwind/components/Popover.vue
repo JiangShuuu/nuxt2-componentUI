@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { computePosition, flip, offset, shift, arrow } from '@floating-ui/dom'
+import { computePosition, flip, offset, shift, arrow, autoUpdate } from '@floating-ui/dom'
 
 export default {
   name: 'PopoverPage',
@@ -53,50 +53,70 @@ export default {
     }
   },
   methods: {
-    async calculatePosition() {
+    calculatePosition() {
       const refer = this.$refs.referenceRef
       const floating = this.$refs.floatingRef
       const arrowRef = this.$refs.arrowRef
 
-      const { x, y, middlewareData, placement } = await computePosition(
-        refer,
-        floating,
-        {
-          placement: this.placement,
-          middleware: [
-            offset(10),
-            flip(),
-            shift({ padding: 10 }),
-            arrow({ element: arrowRef }),
-          ],
-        }
-      )
+      // const { x, y, middlewareData, placement } = await computePosition(
+      //   refer,
+      //   floating,
+      //   {
+      //     placement: this.placement,
+      //     middleware: [
+      //       offset(10),
+      //       flip(),
+      //       shift({ padding: 10 }),
+      //       arrow({ element: arrowRef }),
+      //     ],
+      //   }
+      // )
 
-      Object.assign(floating.style, {
-        left: `${x}px`,
-        top: `${y}px`,
+      autoUpdate(refer, floating, ()=> {
+        computePosition(
+          refer,
+          floating,
+          {
+            placement: this.placement,
+            middleware: [
+              offset(10),
+              flip(),
+              shift({ padding: 10 }),
+              arrow({ element: arrowRef }),
+            ],
+          }
+        ).then(({x, y, middlewareData, placement}) => {
+          Object.assign(floating.style, {
+            left: `${x}px`,
+            top: `${y}px`,
+          })
+    
+          const opposedSide = {
+            right: 'left',
+            left: 'right',
+            bottom: 'top',
+            top: 'bottom',
+          }[placement.split('-')[0]]
+    
+          // arrow
+          const { x: arrowX, y: arrowY } = middlewareData.arrow
+    
+          Object.assign(arrowRef.style, {
+            left: arrowX ? `${arrowX}px` : '',
+            top: arrowY ? `${arrowY}px` : '',
+            bottom: '',
+            right: '',
+            [opposedSide]: '-6px',
+          })
+        })
       })
 
-      const opposedSide = {
-        right: 'left',
-        left: 'right',
-        bottom: 'top',
-        top: 'bottom',
-      }[placement.split('-')[0]]
+      
 
-      // arrow
-      const { x: arrowX, y: arrowY } = middlewareData.arrow
-
-      Object.assign(arrowRef.style, {
-        left: arrowX ? `${arrowX}px` : '',
-        top: arrowY ? `${arrowY}px` : '',
-        bottom: '',
-        right: '',
-        [opposedSide]: '-6px',
-      })
 
       // console.log('get', middlewareData, placement)
     },
+    
     // ani 待解
     hide() {
       clearTimeout(this.timer)
