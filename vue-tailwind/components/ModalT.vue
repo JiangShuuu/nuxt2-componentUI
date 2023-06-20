@@ -21,7 +21,7 @@
               <span>23</span>
             </div>
           </div>
-          <button class="w-[154px] btn btn_primary">儲存</button>
+          <button class="w-[154px] btn btn_primary" @click="hidden">儲存</button>
         </div>
 
         <div class="flex items-center mt-9">
@@ -70,6 +70,9 @@ export default {
   methods: {
     onBeforeOpen({ params }) {
       console.log('getParams', params)
+    },
+    hidden() {
+      this.$modal.hide('test-modal')
     }
   },
 }
