@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import toast from '../components/custom/toast/index'
+import toast02 from '../components/custom/toast02/index'
 
 const tooltipDirective = {
   inserted(el, binding) {
@@ -14,7 +15,7 @@ const tooltipDirective = {
     el.appendChild(tooltip)
 
     // Tooltip 樣式
-    const style = document.createElement('style');
+    const style = document.createElement('style')
     style.textContent = `
       .tooltiptext {
         visibility: hidden;
@@ -44,7 +45,7 @@ const tooltipDirective = {
         border-color: #292929 transparent transparent transparent;
       }
     `
-    document.head.appendChild(style);
+    document.head.appendChild(style)
 
     el.addEventListener('mouseenter', function () {
       clearTimeout(this.timer)
@@ -62,3 +63,4 @@ const tooltipDirective = {
 
 Vue.directive('tooltip', tooltipDirective)
 Vue.use(toast)
+Vue.use(toast02)
