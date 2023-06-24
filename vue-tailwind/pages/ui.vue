@@ -10,6 +10,10 @@
     <button class="w-20 btn btn_primary" @click="$toast('CustomToast01!!')">
       Toast
     </button>
+    <!-- Toast02 -->
+    <button class="w-20 btn btn_primary" @click="$toast02({content: 'CustomToast02!!'})">
+      Toast02
+    </button>
     <!-- Tooltip Custom -->
     <button v-tooltip="'tooltip!'" class="w-20 btn btn_primary">Tooltip</button>
     <!-- Tooltip floating -->
