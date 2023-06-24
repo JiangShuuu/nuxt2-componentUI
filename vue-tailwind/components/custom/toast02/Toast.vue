@@ -1,10 +1,12 @@
 <template>
   <div
-    v-if="showClose"
+    v-if="showWrap"
     class="toast-content"
-    :class="showContent ? 'fadein' : 'fadeout'"
+    :class="[showContent ? 'fadein' : 'fadeout']"
+    :style="positionStyle"
   >
     {{ content }}
+    {{ verticalOffset }}
   </div>
 </template>
 
@@ -25,7 +27,25 @@ export default {
       timer: null,
       verticalOffset: 16,
       showContent: true,
+      showWrap: true,
     }
+  },
+  computed: {
+    positionStyle() {
+      return {
+        top: `${this.verticalOffset}px`,
+      }
+    },
+  },
+  watch: {
+    showWrap(newVal) {
+      if (newVal) {
+        console.log('gggggg')
+        // this.visible = false
+        this.$el.addEventListener('transitionend', this.destroyElement)
+        this.$emit('toastClose')
+      }
+    },
   },
   mounted() {
     // 挂载Toast在页面中
@@ -43,16 +63,28 @@ export default {
   },
   methods: {
     startTimer() {
+      console.log('ge3t')
       if (this.duration > 0) {
+        console.log('getSettimottt', this.duration)
         this.timer = setTimeout(() => {
-          if (!this.closed) {
-            this.closed = true
-          }
+          this.showContent = false
+          // if (!this.showContent) {
+          // }
         }, this.duration)
+
+        this.timer02 = setTimeout(() => {
+          this.showWrap = false
+          // if (!this.showWrap) {
+          // }
+        }, this.duration + 1250)
       }
     },
     stopTimer() {
       if (this.timer) clearTimeout(this.timer)
+      if (this.timer02) clearTimeout(this.timer02)
+    },
+    destroyElement() {
+      this.$destroy()
     },
   },
 }

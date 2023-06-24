@@ -19,10 +19,16 @@ function generteInstance(options) {
   const id = 'toast_' + initIndex++
   instance.id = id
 
+  console.log('update', instance.position)
+
   // 計算偏移量
   instance.verticalOffset = initVerticalOffset(instance.position)
+
+  console.log('position', typeof instance.verticalOffset)
+
   // 監聽組件 close
   instance.$once('toastClose', function () {
+    console.log('getclost')
     const curInstance = this
     // 當關閉 Toast 時, 重新計算垂直方向偏移量
     updateVericalOffset(curInstance)
@@ -47,6 +53,7 @@ function initVerticalOffset(position) {
 }
 
 function updateVericalOffset(removeInstance) {
+  console.log('update')
   let index = 0
   let removeHeight = removeInstance.verticalOffset
 
@@ -68,7 +75,7 @@ function updateVericalOffset(removeInstance) {
   }
 }
 
-function registryToast(options) {
+function registryToast() {
   Vue.prototype.$toast02 = (options = {}) => {
     const instance = generteInstance(options)
     instances.push(instance)
