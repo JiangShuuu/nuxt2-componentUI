@@ -8,7 +8,6 @@ const ToastConstructor = Vue.extend(Toast)
 const verticalOffset = 16
 
 function generteInstance(options) {
-  console.log('get02', options)
   const instance = new ToastConstructor({
     propsData: options,
   }).$mount(document.createElement('div'))
@@ -70,7 +69,6 @@ function updateVericalOffset(removeInstance) {
 }
 
 function registryToast(options) {
-  console.log('get', options)
   Vue.prototype.$toast02 = (options = {}) => {
     const instance = generteInstance(options)
     instances.push(instance)

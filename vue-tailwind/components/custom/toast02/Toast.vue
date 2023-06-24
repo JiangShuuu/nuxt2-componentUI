@@ -12,12 +12,20 @@
 export default {
   name: 'ToastUI',
   props: {
-    type: { type: String, default: "info" },
+    type: { type: String, default: 'info' },
     content: { type: String, required: true },
     duration: { type: Number, default: 2500 },
-    position: { type: String, default: "top-right" },
+    position: { type: String, default: 'top-right' },
     autoClose: { type: Boolean, default: true },
     showClose: { type: Boolean, default: true },
+  },
+  data() {
+    return {
+      closed: false,
+      timer: null,
+      verticalOffset: 16,
+      showContent: true,
+    }
   },
   mounted() {
     // 挂载Toast在页面中
@@ -38,7 +46,7 @@ export default {
       if (this.duration > 0) {
         this.timer = setTimeout(() => {
           if (!this.closed) {
-            this.close()
+            this.closed = true
           }
         }, this.duration)
       }
