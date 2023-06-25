@@ -1,13 +1,10 @@
 <template>
-  <div
-    v-if="showWrap"
-    class="toast-content"
-    :class="[showContent ? 'fadein' : 'fadeout']"
-    :style="positionStyle"
-  >
-    {{ content }}
-    {{ verticalOffset }}
-  </div>
+  <Transition name="fade">
+    <div v-if="showWrap" class="toast-content" :style="positionStyle">
+      {{ content }}
+      {{ verticalOffset }}
+    </div>
+  </Transition>
 </template>
 
 <script>
@@ -27,7 +24,7 @@ export default {
       timer: null,
       verticalOffset: 16,
       showContent: true,
-      showWrap: true,
+      showWrap: false,
     }
   },
   computed: {
@@ -39,11 +36,8 @@ export default {
   },
   watch: {
     showWrap(newVal) {
-      if (newVal) {
-        console.log('gggggg')
-        // this.visible = false
-        this.$el.addEventListener('transitionend', this.destroyElement)
-        this.$emit('toastClose')
+      if (!newVal) {
+        this.destroyElement()
       }
     },
   },
@@ -52,34 +46,30 @@ export default {
     document.body.appendChild(this.$el)
     // 需要自动关闭时，调用startTimer
     if (this.autoClose) this.startTimer()
+    this.showWrap = true
   },
   beforeDestroy() {
+    console.log('bedis')
     this.stopTimer()
-    this.$el.removeEventListener('transitionend', this.destroyElement)
+    this.showWrap = false
+    // this.$el.removeEventListener('transitionend', this.destroyElement)
   },
   destroyed() {
-    // 注销
-    this.$el.parentNode.removeChild(this.$el)
+    console.log('dis', this.$el)
+    document.body.removeChild(this.$el)
+    // this.$el.parentNode.removeChild(this.$el)
   },
   methods: {
     startTimer() {
-      console.log('ge3t')
       if (this.duration > 0) {
-        console.log('getSettimottt', this.duration)
         this.timer = setTimeout(() => {
-          this.showContent = false
-        }, this.duration)
-
-        this.timer02 = setTimeout(() => {
           this.showWrap = false
-          // 觸發更新機制
           this.$emit('toastClose')
-        }, this.duration + 1250)
+        }, this.duration)
       }
     },
     stopTimer() {
       if (this.timer) clearTimeout(this.timer)
-      if (this.timer02) clearTimeout(this.timer02)
     },
     destroyElement() {
       this.$destroy()
@@ -95,6 +85,20 @@ export default {
   height: 88px;
   top: 9px;
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-leave-to {
+  opacity: 0 !important;
+}
+
 .fadein {
   animation: animate_in 0.25s;
 }

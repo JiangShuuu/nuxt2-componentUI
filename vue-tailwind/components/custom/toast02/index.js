@@ -23,10 +23,11 @@ function generteInstance(options) {
   // 計算偏移量
   instance.verticalOffset = initVerticalOffset(instance.position)
 
-  console.log('position', typeof instance.verticalOffset)
-
+  console.log('getPosition', instance.verticalOffset)
+  console.log('getEven', instance)
   // 監聽組件 $emit 事件 close
   instance.$once('toastClose', function () {
+    console.log('getClose')
     const curInstance = this
     // 當關閉 Toast 時, 重新計算垂直方向偏移量
     updateVericalOffset(curInstance)
@@ -43,7 +44,7 @@ function generteInstance(options) {
 function initVerticalOffset(position) {
   // 篩選同一方向的 Toast 組件
   const typeInstances = instances.filter((item) => item.position === position)
-
+  console.log('getArr', typeInstances)
   return typeInstances.reduce(
     (sum, elem) => elem.$el.offsetHeight + sum + verticalOffset,
     verticalOffset
@@ -57,13 +58,13 @@ function updateVericalOffset(removeInstance) {
   for (; index < instances.length; index++) {
     if (instances[index].id === removeInstance.id) break
   }
-  instances.splice(index, 1)
-
+  console.log('getIdx', index)
   // 刪除關閉的 Toast 組件
   instances.splice(index, 1)
   // 更新在刪除位置之後的其他組件位置
   for (; index < instances.length; ++index) {
     if (instances[index].position === removeInstance.position) {
+      console.log('hihi, getegete')
       ;[instances[index].verticalOffset, removeHeight] = [
         removeHeight,
         instances[index].verticalOffset,
