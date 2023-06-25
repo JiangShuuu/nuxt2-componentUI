@@ -20,16 +20,13 @@ function generteInstance(options) {
   const id = 'toast_' + initIndex++
   instance.id = id
 
-  console.log('update', instance.position)
-
   // 計算偏移量
   instance.verticalOffset = initVerticalOffset(instance.position)
 
   console.log('position', typeof instance.verticalOffset)
 
-  // 監聽組件 close
+  // 監聽組件 $emit 事件 close
   instance.$once('toastClose', function () {
-    console.log('getclost')
     const curInstance = this
     // 當關閉 Toast 時, 重新計算垂直方向偏移量
     updateVericalOffset(curInstance)
@@ -54,7 +51,6 @@ function initVerticalOffset(position) {
 }
 
 function updateVericalOffset(removeInstance) {
-  console.log('update')
   let index = 0
   let removeHeight = removeInstance.verticalOffset
 
