@@ -68,14 +68,12 @@ export default {
         console.log('getSettimottt', this.duration)
         this.timer = setTimeout(() => {
           this.showContent = false
-          // if (!this.showContent) {
-          // }
         }, this.duration)
 
         this.timer02 = setTimeout(() => {
           this.showWrap = false
-          // if (!this.showWrap) {
-          // }
+          // 觸發更新機制
+          this.$emit('toastClose')
         }, this.duration + 1250)
       }
     },

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Toast from './Toast'
 
+// https://juejin.cn/post/6844903729305485320
 const instances = []
 let initIndex = 0
 
