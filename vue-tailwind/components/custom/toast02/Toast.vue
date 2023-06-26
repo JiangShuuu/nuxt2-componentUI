@@ -1,8 +1,7 @@
 <template>
   <Transition name="fade">
-    <div v-if="showWrap" class="toast-content" :style="positionStyle">
-      {{ content }}
-      {{ verticalOffset }}
+    <div v-if="show" class="toast-content" :style="positionStyle">
+      {{ content + verticalOffset }}
     </div>
   </Transition>
 </template>
@@ -23,8 +22,7 @@ export default {
       closed: false,
       timer: null,
       verticalOffset: 16,
-      showContent: true,
-      showWrap: false,
+      show: false,
     }
   },
   computed: {
@@ -35,36 +33,39 @@ export default {
     },
   },
   watch: {
-    showWrap(newVal) {
-      if (!newVal) {
-        this.destroyElement()
+    closed(newVal) {
+      if (newVal) {
+        // this.destroyElement()
+        // this.$el.addEventListener('transitionend', this.destroyElement)
+        this.$emit('toastClose')
+        this.show = false
       }
     },
   },
   mounted() {
-    // 挂载Toast在页面中
+    // 掛载Toast在頁面中
     document.body.appendChild(this.$el)
-    // 需要自动关闭时，调用startTimer
-    if (this.autoClose) this.startTimer()
-    this.showWrap = true
+    // if (this.autoClose) this.startTimer()
+    this.startTimer()
   },
   beforeDestroy() {
-    console.log('bedis')
+    console.log('beforeDestroy')
     this.stopTimer()
     this.showWrap = false
     // this.$el.removeEventListener('transitionend', this.destroyElement)
   },
   destroyed() {
-    console.log('dis', this.$el)
+    console.log('destroyed', this.$el)
     document.body.removeChild(this.$el)
     // this.$el.parentNode.removeChild(this.$el)
   },
   methods: {
     startTimer() {
+      // 開啟Toast
+      this.show = true
       if (this.duration > 0) {
         this.timer = setTimeout(() => {
-          this.showWrap = false
-          this.$emit('toastClose')
+          this.closed = true
         }, this.duration)
       }
     },
@@ -88,7 +89,7 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 1s ease;
+  transition: opacity 0.5s ease;
 }
 
 .fade-enter {
