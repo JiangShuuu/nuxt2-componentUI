@@ -33,12 +33,17 @@ export default {
     },
   },
   watch: {
+    show(newValue) {
+      if (!newValue) {
+        this.$el.addEventListener('transitionend', this.destroyElement)
+      }
+    },
     closed(newVal) {
       if (newVal) {
         // this.destroyElement()
-        // this.$el.addEventListener('transitionend', this.destroyElement)
-        this.$emit('toastClose')
         this.show = false
+        this.$el.addEventListener('transitionend', this.destroyElement)
+        this.$emit('toastClose')
       }
     },
   },
@@ -51,21 +56,25 @@ export default {
   beforeDestroy() {
     console.log('beforeDestroy')
     this.stopTimer()
-    this.showWrap = false
     // this.$el.removeEventListener('transitionend', this.destroyElement)
   },
   destroyed() {
-    console.log('destroyed', this.$el)
-    document.body.removeChild(this.$el)
-    // this.$el.parentNode.removeChild(this.$el)
+    this.$el.parentNode.removeChild(this.$el)
   },
+  // destroyed() {
+  //   console.log('--------destroyed--------', this.$el)
+  //   // document.body.removeChild(this.$el)
+  //   this.$el.parentNode.removeChild(this.$el)
+  // },
   methods: {
     startTimer() {
       // 開啟Toast
-      this.show = true
       if (this.duration > 0) {
+        this.show = true
         this.timer = setTimeout(() => {
-          this.closed = true
+          if (!this.closed) {
+            this.closed = true
+          }
         }, this.duration)
       }
     },
