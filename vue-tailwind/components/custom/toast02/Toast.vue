@@ -56,16 +56,11 @@ export default {
   beforeDestroy() {
     console.log('beforeDestroy')
     this.stopTimer()
-    // this.$el.removeEventListener('transitionend', this.destroyElement)
   },
   destroyed() {
+    console.log('---------destroy---------')
     this.$el.parentNode.removeChild(this.$el)
   },
-  // destroyed() {
-  //   console.log('--------destroyed--------', this.$el)
-  //   // document.body.removeChild(this.$el)
-  //   this.$el.parentNode.removeChild(this.$el)
-  // },
   methods: {
     startTimer() {
       // 開啟Toast
