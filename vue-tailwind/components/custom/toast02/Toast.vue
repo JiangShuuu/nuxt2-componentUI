@@ -40,7 +40,6 @@ export default {
     },
     closed(newVal) {
       if (newVal) {
-        // this.destroyElement()
         this.show = false
         this.$el.addEventListener('transitionend', this.destroyElement)
         this.$emit('toastClose')
@@ -96,13 +95,14 @@ export default {
   transition: opacity 0.5s ease;
 }
 
-.fade-enter {
+.fade-enter,
+.fade-leave {
   opacity: 0;
 }
 
-.fade-leave-to {
-  opacity: 0 !important;
-}
+/* .fade-leave-to {
+  opacity: 0;
+} */
 
 .fadein {
   animation: animate_in 0.25s;
