@@ -1,7 +1,7 @@
 <template>
   <Transition name="fade">
     <div v-if="show" class="toast-content" :style="positionStyle">
-      {{ content + verticalOffset }}
+      {{ content + id + '_' + verticalOffset }}
     </div>
   </Transition>
 </template>
@@ -53,7 +53,6 @@ export default {
     this.startTimer()
   },
   beforeDestroy() {
-    console.log('beforeDestroy')
     this.stopTimer()
   },
   destroyed() {

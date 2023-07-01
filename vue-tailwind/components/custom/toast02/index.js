@@ -19,15 +19,15 @@ function generteInstance(options) {
 
   const id = 'toast_' + initIndex++
   instance.id = id
+  instance.position = 'top'
 
   // 計算偏移量
   instance.verticalOffset = initVerticalOffset(instance.position)
 
-  console.log('InitPosition', instance.verticalOffset)
-  console.log('InitArr', instance)
+  console.log('InitItem', instance.id, instance.verticalOffset)
   // 監聽組件 $emit 事件 close
   instance.$once('toastClose', function () {
-    console.log('CloseEvent&update', this)
+    console.log('CloseEvent&update', this.id)
     const curInstance = this
     // 當關閉 Toast 時, 重新計算垂直方向偏移量
     updateVericalOffset(curInstance)
@@ -45,23 +45,20 @@ function generteInstance(options) {
 function initVerticalOffset(position) {
   // 篩選同一方向的 Toast 組件
   const typeInstances = instances.filter((item) => item.position === position)
-  console.log('SameArr', typeInstances)
-  return typeInstances.reduce(
-    (sum, elem) => elem.$el.offsetHeight + sum + verticalOffset,
-    verticalOffset
-  )
+  return typeInstances.reduce((sum, elem) => {
+    return elem.$el.offsetHeight + sum + verticalOffset
+  }, verticalOffset)
 }
 
 function updateVericalOffset(removeInstance) {
   let index = 0
   let removeHeight = removeInstance.verticalOffset
 
-  console.log('removeHeight', removeHeight)
-  console.log('idx', index)
+  // console.log('removeHeight', removeHeight)
+  // console.log('idx', index)
   for (; index < instances.length; index++) {
     if (instances[index].id === removeInstance.id) break
   }
-  console.log('getIdx', index)
   // 刪除關閉的 Toast 組件
   instances.splice(index, 1)
   // 更新在刪除位置之後的其他組件位置
