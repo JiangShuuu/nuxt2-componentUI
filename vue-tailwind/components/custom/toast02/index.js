@@ -31,6 +31,8 @@ function generteInstance(options) {
     const curInstance = this
     // 當關閉 Toast 時, 重新計算垂直方向偏移量
     updateVericalOffset(curInstance)
+    console.log('getget')
+    console.loeg('get012321')
 
     // if (typeof curInstance.onClose === 'function') {
     //   console.log('oooooooooo')
